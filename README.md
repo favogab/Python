@@ -1,43 +1,134 @@
-# CS50P
+# CS50P – Python Learning & Security Projects
 
-This repository contains my work for CS50's Introduction to Programming with Python (CS50P).
+This repository documents my Python learning journey through Harvard's
+CS50's Introduction to Programming with Python (CS50P).
 
-## Overview
+Alongside the official course exercises and problem sets, I build small
+personal projects that apply the Python concepts I learn to cybersecurity,
+SOC analysis, and security automation.
 
-The course focuses on learning the fundamentals of Python programming, including:
+## What I'm Learning
+
+The course covers Python fundamentals including:
 
 - Variables and data types
-- Conditionals and loops
-- Functions and modular code
-- Strings, lists, and dictionaries
-- File handling and problem solving
-- Building small practical programs
+- Functions and arguments
+- String manipulation
+- Conditionals and Boolean logic
+- Loops
+- Exceptions
+- Libraries
+- Unit testing
+- File I/O
+- Regular expressions
+- Object-oriented programming
 
-## Goals
+## Repository Structure
 
-This project repository is meant to track exercises, problem sets, and coding practice completed throughout the course.
+The repository is organized by course week.
 
-## Structure
+Each week contains two types of work:
 
-The workspace includes small Python scripts covering common CS50P assignments and algorithmic exercises.
+**CS50P Exercises**
+- Course exercises
+- Problem sets
+- Coding practice
 
-## Getting Started
+**Personal Projects**
+- Small programs built independently
+- Cybersecurity-focused exercises
+- SOC and security automation experiments
+- Projects that reinforce concepts learned during that week
 
-1. Open the Python files in this project.
-2. Run them with Python 3.
-3. Review the logic, test edge cases, and improve the code as needed.
+Example structure:
 
-Example:
+CS50P/
+├── Week_0/
+│   ├── indoor.py
+│   ├── playback.py
+│   ├── faces.py
+│   ├── einstein.py
+│   ├── tip.py
+│   └── personal/
+│       └── soc_triage.py
+│
+├── Week_1/
+│   ├── Exercise/
+│   │   ├── bank.py
+│   │   ├── deep.py
+│   │   ├── extensions.py
+│   │   ├── interpreter.py
+│   │   └── meal.py
+│   └── personal/
+│       └── ...
+│
+└── ...
+
+## Personal Security Projects
+
+### SOC Alert Triage
+
+One of my first personal Python exercises applies basic Python concepts to
+a simple SOC alert-triage scenario.
+
+The script collects:
+
+- Username
+- Source IP address
+- Number of failed login attempts
+- Whether a successful login followed the failures
+
+It then uses conditional logic to classify the activity as:
+
+- LOW
+- MEDIUM
+- HIGH
+- CRITICAL
+
+This project was built to reinforce:
+
+- `input()`
+- Variables
+- Functions
+- Integer conversion
+- `if / elif / else`
+- Boolean conditions
+- Return values
+- f-strings
+
+As I learn more Python, I plan to gradually improve these security-focused
+scripts using concepts introduced later in the course.
+
+## Running the Programs
+
+Python 3 is required.
+
+Clone the repository or open it locally, navigate to the appropriate
+directory, and run a script with:
 
 ```bash
-python compare.py
+python filename.py
 ```
 
-## Notes
+For example:
 
-This is a learning repository for practice and experimentation. Each file can be expanded, revised, and improved over time.
+```bash
+python soc_triage.py
+```
+
+## Goal
+
+My goal is not only to complete CS50P, but to develop a strong Python
+foundation that I can eventually apply to security operations, log analysis,
+automation, APIs, data processing, and other cybersecurity workflows.
+
+Rather than jumping directly into security-specific Python scripts, this
+repository tracks the fundamentals first and shows how those skills develop
+over time.
 
 ## Status
 
-In progress / learning repository for CS50P.
+🚧 **In Progress**
 
+Currently working through CS50P and expanding the personal security projects
+as new Python concepts are introduced.
