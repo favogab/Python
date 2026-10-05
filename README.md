@@ -16,6 +16,7 @@ The course covers Python fundamentals including:
 - String manipulation
 - Conditionals and Boolean logic
 - Loops
+- Lists and dictionaries
 - Exceptions
 - Libraries
 - Unit testing
@@ -42,15 +43,14 @@ Each week contains two types of work:
 
 Example structure:
 
+```text
 CS50P/
 ├── Week_0/
 │   ├── indoor.py
 │   ├── playback.py
 │   ├── faces.py
 │   ├── einstein.py
-│   ├── tip.py
-│   └── personal/
-│       └── soc_triage.py
+│   └── tip.py
 │
 ├── Week_1/
 │   ├── Exercise/
@@ -59,14 +59,25 @@ CS50P/
 │   │   ├── extensions.py
 │   │   ├── interpreter.py
 │   │   └── meal.py
-│   └── personal/
-│       └── ...
+│   └── Personal/
+│       └── soc_triage.py
+│
+├── Week_2/
+│   ├── Exercise/
+│   │   ├── camel.py
+│   │   ├── coke.py
+│   │   ├── nutrition.py
+│   │   ├── plates.py
+│   │   └── twttr.py
+│   └── Personal/
+│       └── soc_login_analyzer.py
 │
 └── ...
+```
 
 ## Personal Security Projects
 
-### SOC Alert Triage
+### Week 1 – SOC Alert Triage
 
 One of my first personal Python exercises applies basic Python concepts to
 a simple SOC alert-triage scenario.
@@ -96,8 +107,41 @@ This project was built to reinforce:
 - Return values
 - f-strings
 
-As I learn more Python, I plan to gradually improve these security-focused
-scripts using concepts introduced later in the course.
+### Week 2 – SOC Login Event Analyzer
+
+The Week 2 personal project expands from analyzing a single user-provided
+alert to processing multiple login events stored as structured data.
+
+Each event contains:
+
+- Username
+- Source IP address
+- Number of failed login attempts
+
+The script:
+
+- Iterates through multiple login events
+- Classifies each event as LOW, MEDIUM, or HIGH severity
+- Counts the total number of events
+- Summarizes events by severity
+- Identifies IP addresses that appear in more than one event
+
+This project was built to reinforce:
+
+- `for` loops
+- Lists
+- Dictionaries
+- Lists of dictionaries
+- `len()`
+- Iteration
+- Counters
+- Conditional logic
+- Dictionary membership
+- Working with structured data
+
+The project intentionally uses concepts introduced up to Week 2 rather than
+more advanced Python techniques, allowing the scripts to develop alongside
+my progress through the course.
 
 ## Running the Programs
 
@@ -113,7 +157,7 @@ python filename.py
 For example:
 
 ```bash
-python soc_triage.py
+python soc_login_analyzer.py
 ```
 
 ## Goal
@@ -122,13 +166,15 @@ My goal is not only to complete CS50P, but to develop a strong Python
 foundation that I can eventually apply to security operations, log analysis,
 automation, APIs, data processing, and other cybersecurity workflows.
 
-Rather than jumping directly into security-specific Python scripts, this
-repository tracks the fundamentals first and shows how those skills develop
-over time.
+Rather than jumping directly into advanced security-specific Python scripts,
+this repository tracks the fundamentals first and shows how those skills
+develop over time.
 
 ## Status
 
 🚧 **In Progress**
 
-Currently working through CS50P and expanding the personal security projects
-as new Python concepts are introduced.
+Completed coursework and personal practice through **CS50P Week 2**.
+
+The personal security projects will continue to develop as new Python
+concepts are introduced.
