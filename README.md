@@ -72,6 +72,15 @@ CS50P/
 │   └── Personal/
 │       └── soc_login_analyzer.py
 │
+├── Week_3/
+│   ├── Exercise/
+│   │   ├── fuel.py
+│   │   ├── grocery.py
+│   │   ├── outdated.py
+│   │   └── taqueria.py
+│   └── Personal/
+│       └── soc_login_analyzer.py
+│
 └── ...
 ```
 
@@ -139,9 +148,43 @@ This project was built to reinforce:
 - Dictionary membership
 - Working with structured data
 
-The project intentionally uses concepts introduced up to Week 2 rather than
-more advanced Python techniques, allowing the scripts to develop alongside
-my progress through the course.
+### Week 3 – Resilient SOC Login Event Analyzer
+
+The Week 3 version introduces exception handling to make the login event
+analyzer more resilient when processing malformed or incomplete event data.
+
+The dataset intentionally includes invalid events, such as:
+
+- A failed-login value containing text instead of a number
+- An event missing the `failed` field entirely
+
+Rather than allowing one malformed event to terminate the entire analysis,
+the script catches the relevant exceptions, skips invalid events, and
+continues processing the remaining data.
+
+The analyzer also reports:
+
+- Total events received
+- Valid events
+- Invalid events
+- HIGH, MEDIUM, and LOW severity totals
+- Repeated source IP addresses
+
+This project was built to reinforce:
+
+- `try`
+- `except`
+- `TypeError`
+- `KeyError`
+- Handling malformed data
+- Skipping invalid records safely
+- Combining exception handling with loops and dictionaries
+- Keeping analysis running when individual records fail
+
+The project intentionally uses concepts introduced up to the current CS50P
+week rather than jumping ahead to more advanced Python techniques. This
+allows the security scripts to develop alongside my progress through the
+course.
 
 ## Running the Programs
 
@@ -174,7 +217,13 @@ develop over time.
 
 🚧 **In Progress**
 
-Completed coursework and personal practice through **CS50P Week 2**.
+Completed coursework and personal practice through **CS50P Week 3**.
+
+Current progression:
+
+**Week 1:** Single-alert triage and classification  
+**Week 2:** Multi-event analysis using loops and structured data  
+**Week 3:** Exception handling and resilience against malformed event data
 
 The personal security projects will continue to develop as new Python
 concepts are introduced.
