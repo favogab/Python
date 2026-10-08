@@ -1,11 +1,10 @@
 # CS50P – Python Learning & Security Projects
 
-This repository documents my Python learning journey through Harvard's
-CS50's Introduction to Programming with Python (CS50P).
+This repository documents my Python learning journey through Harvard's **CS50's Introduction to Programming with Python (CS50P)**.
 
-Alongside the official course exercises and problem sets, I build small
-personal projects that apply the Python concepts I learn to cybersecurity,
-SOC analysis, and security automation.
+Alongside the official course exercises and problem sets, I build small personal projects that apply the Python concepts I learn to cybersecurity, Security Operations Center (SOC) analysis, and security automation.
+
+My approach is to learn Python fundamentals progressively and apply each week's concepts to practical security scenarios.
 
 ## What I'm Learning
 
@@ -31,17 +30,16 @@ The repository is organized by course week.
 Each week contains two types of work:
 
 **CS50P Exercises**
-- Course exercises
-- Problem sets
-- Coding practice
+- Official course exercises and problem sets
+- Coding practice and problem-solving activities
 
 **Personal Projects**
-- Small programs built independently
-- Cybersecurity-focused exercises
-- SOC and security automation experiments
-- Projects that reinforce concepts learned during that week
+- Small programs developed alongside the course
+- Cybersecurity-focused programming exercises
+- SOC analysis and security automation experiments
+- Projects that reinforce and extend concepts learned during each week
 
-Example structure:
+### Directory Structure
 
 ```text
 CS50P/
@@ -81,15 +79,24 @@ CS50P/
 │   └── Personal/
 │       └── soc_login_analyzer.py
 │
-└── ...
+└── Week_4/
+    ├── Exercise/
+    │   ├── adieu.py
+    │   ├── bitcoin.py
+    │   ├── emojize.py
+    │   ├── figlet.py
+    │   ├── game.py
+    │   └── professor.py
+    └── Personal/
+        ├── login_events.json
+        └── soc_login_analyzer_w4.py
 ```
 
 ## Personal Security Projects
 
 ### Week 1 – SOC Alert Triage
 
-One of my first personal Python exercises applies basic Python concepts to
-a simple SOC alert-triage scenario.
+My first personal Python security project applies basic programming concepts to a simple SOC alert-triage scenario.
 
 The script collects:
 
@@ -98,132 +105,208 @@ The script collects:
 - Number of failed login attempts
 - Whether a successful login followed the failures
 
-It then uses conditional logic to classify the activity as:
+It uses conditional logic to classify the activity into four severity levels:
 
 - LOW
 - MEDIUM
 - HIGH
 - CRITICAL
 
-This project was built to reinforce:
+**Python concepts reinforced:**
 
 - `input()`
-- Variables
-- Functions
+- Variables and data types
+- Functions and arguments
 - Integer conversion
 - `if / elif / else`
 - Boolean conditions
 - Return values
 - f-strings
 
+This project introduces the idea of translating simple security detection rules into Python logic.
+
 ### Week 2 – SOC Login Event Analyzer
 
-The Week 2 personal project expands from analyzing a single user-provided
-alert to processing multiple login events stored as structured data.
+The Week 2 project expands from analyzing a single alert to processing multiple login events stored as structured data.
 
-Each event contains:
+Each event contains a username, source IP address, and number of failed login attempts.
 
-- Username
-- Source IP address
-- Number of failed login attempts
-
-The script:
+**Features:**
 
 - Iterates through multiple login events
-- Classifies each event as LOW, MEDIUM, or HIGH severity
+- Classifies events as LOW, MEDIUM, or HIGH severity
 - Counts the total number of events
 - Summarizes events by severity
-- Identifies IP addresses that appear in more than one event
+- Identifies IP addresses appearing in multiple events
 
-This project was built to reinforce:
+**Python concepts reinforced:**
 
 - `for` loops
-- Lists
-- Dictionaries
+- Lists and dictionaries
 - Lists of dictionaries
 - `len()`
-- Iteration
-- Counters
+- Iteration and manual counters
 - Conditional logic
 - Dictionary membership
 - Working with structured data
 
+This project demonstrates how loops and data structures can support basic security event analysis.
+
 ### Week 3 – Resilient SOC Login Event Analyzer
 
-The Week 3 version introduces exception handling to make the login event
-analyzer more resilient when processing malformed or incomplete event data.
+The Week 3 project improves the analyzer's resilience by introducing exception handling.
 
-The dataset intentionally includes invalid events, such as:
+The dataset intentionally includes malformed or incomplete login events, including:
 
-- A failed-login value containing text instead of a number
-- An event missing the `failed` field entirely
+- Failed-login counts containing text instead of integers
+- Events missing the required `failed` field
 
-Rather than allowing one malformed event to terminate the entire analysis,
-the script catches the relevant exceptions, skips invalid events, and
-continues processing the remaining data.
+Rather than allowing one invalid event to terminate the entire analysis, the program catches relevant exceptions, skips malformed records, and continues processing.
 
-The analyzer also reports:
+**Features:**
 
-- Total events received
-- Valid events
-- Invalid events
-- HIGH, MEDIUM, and LOW severity totals
-- Repeated source IP addresses
+- Classifies valid login events by severity
+- Handles invalid event data using exception handling
+- Counts total, valid, and invalid events
+- Summarizes HIGH, MEDIUM, and LOW severity events
+- Identifies repeated source IP addresses
 
-This project was built to reinforce:
+**Python concepts reinforced:**
 
-- `try`
-- `except`
+- `try` and `except`
 - `TypeError`
 - `KeyError`
 - Handling malformed data
-- Skipping invalid records safely
-- Combining exception handling with loops and dictionaries
-- Keeping analysis running when individual records fail
+- Skipping invalid records
+- Combining exceptions with loops and dictionaries
+- Maintaining program execution when individual records fail
 
-The project intentionally uses concepts introduced up to the current CS50P
-week rather than jumping ahead to more advanced Python techniques. This
-allows the security scripts to develop alongside my progress through the
-course.
+This project reinforces the importance of handling unexpected input in security analysis workflows.
+
+### Week 4 – Library-Enhanced SOC Login Event Analyzer
+
+The Week 4 project extends the previous analyzer by introducing Python libraries to simplify data processing, strengthen event validation, and incorporate timestamp information.
+
+Instead of storing login events directly inside the Python script, the analyzer reads simulated security events from an external JSON file.
+
+**Features:**
+
+- Loads structured login events from `login_events.json`
+- Checks required fields, nonempty usernames and IP strings, nonnegative integer failed-login counts, and parseable timestamps
+- Classifies events into HIGH, MEDIUM, and LOW severity levels
+- Skips malformed or incomplete events without terminating the analysis
+- Uses `collections.Counter` to summarize severity levels and count source IP occurrences
+- Uses `datetime` to parse event timestamps
+- Identifies IP addresses appearing in multiple valid events
+- Generates a summary of total, valid, and invalid events
+
+**Python concepts reinforced:**
+
+- Importing and using standard-library modules
+- `json` for structured data
+- `collections.Counter` for counting occurrences
+- `datetime.fromisoformat()` for timestamp parsing
+- `pathlib.Path` for file paths
+- Combining libraries with loops, dictionaries, conditions, and exception handling
+
+**Sample analysis results:**
+
+| Metric | Result |
+|---|---|
+| Total events | 7 |
+| Valid events | 5 |
+| Invalid events | 2 |
+| HIGH severity | 2 |
+| MEDIUM severity | 1 |
+| LOW severity | 2 |
+| Repeated source IP | `185.220.101.45` (2 events) |
+
+The project uses **simulated login data for educational purposes**. Severity classifications are based on failed-login thresholds and do not independently establish malicious activity.
+
+The analyzer checks that an IP field contains a nonempty string; it does not yet perform full IPv4 or IPv6 address validation.
+
+**Learning scope:**
+
+The primary focus is CS50P Week 4 (Libraries). Reading JSON files also introduces a concept covered more thoroughly in Week 6 (File I/O).
+
+The personal projects primarily reinforce concepts introduced up to the current CS50P week. Occasionally, a small concept from a later week is introduced when needed for a practical security workflow, with the intention of studying it more deeply when the course reaches that topic.
+
+**Project files:**
+
+- `Week_4/Personal/soc_login_analyzer_w4.py`
+- `Week_4/Personal/login_events.json`
 
 ## Running the Programs
 
 Python 3 is required.
 
-Clone the repository or open it locally, navigate to the appropriate
-directory, and run a script with:
+Clone the repository or open it locally, navigate to the appropriate directory, and run a Python script using:
 
 ```bash
 python filename.py
 ```
 
-For example:
+For example, to run the Week 4 SOC Login Event Analyzer from the repository root:
 
 ```bash
-python soc_login_analyzer.py
+cd Week_4/Personal
+python soc_login_analyzer_w4.py
 ```
+
+The analyzer reads simulated login events from `login_events.json`, which is included in the same directory.
+
+### Dependencies and API Security
+
+Most personal projects use Python's standard library.
+
+Some official CS50P exercises require additional third-party packages, including `requests`, `emoji`, `pyfiglet`, and `inflect`.
+
+The Week 4 Bitcoin exercise uses the CoinCap API to retrieve Bitcoin prices.
+
+For security reasons:
+
+- API keys are not hardcoded into the Python source code.
+- The CoinCap API key is read from the `COINCAP_API_KEY` environment variable.
+- Actual API credentials are not included in the repository.
+- Sensitive credentials and local environment configuration files should not be committed to version control.
+
+The Bitcoin exercise can be run after installing `requests`, configuring the API key, and supplying a Bitcoin quantity:
+
+```bash
+python bitcoin.py 2.5
+```
+
+This exercise introduces API requests, JSON responses, command-line arguments, and currency formatting.
 
 ## Goal
 
-My goal is not only to complete CS50P, but to develop a strong Python
-foundation that I can eventually apply to security operations, log analysis,
-automation, APIs, data processing, and other cybersecurity workflows.
+My goal is not only to complete CS50P, but to develop a strong Python foundation that I can eventually apply to:
 
-Rather than jumping directly into advanced security-specific Python scripts,
-this repository tracks the fundamentals first and shows how those skills
-develop over time.
+- Security operations and SOC workflows
+- Security log analysis
+- Threat detection and event triage
+- Security automation
+- API integration
+- Structured data processing
+- Building reliable and maintainable Python tools
+
+Rather than jumping directly into advanced security-specific Python scripts, this repository tracks my progress through the fundamentals and demonstrates how those skills develop over time.
+
+Each personal project builds on earlier work, gradually introducing new programming concepts and practical security use cases.
 
 ## Status
 
 🚧 **In Progress**
 
-Completed coursework and personal practice through **CS50P Week 3**.
+Completed coursework and personal practice through **CS50P Week 4 – Libraries**.
 
-Current progression:
+**Current progression:**
 
-**Week 1:** Single-alert triage and classification  
-**Week 2:** Multi-event analysis using loops and structured data  
-**Week 3:** Exception handling and resilience against malformed event data
+- **Week 1:** Single-alert triage using functions and conditional logic
+- **Week 2:** Multi-event analysis using loops, lists, and dictionaries
+- **Week 3:** Exception handling and resilience against malformed event data
+- **Week 4:** Library-enhanced SOC analysis using JSON, Counter, datetime, and structured event validation
 
-The personal security projects will continue to develop as new Python
-concepts are introduced.
+**Next:** CS50P Week 5 – Unit Tests.
+
+The personal security projects will continue to evolve as new Python concepts are introduced, with an emphasis on learning the fundamentals, understanding the code, and applying programming skills to realistic cybersecurity scenarios.

@@ -1,0 +1,10 @@
+
+[
+    {"user": "admin", "ip": "185.220.101.45", "failed": 12, "timestamp": "2026-10-08T09:00:00"},
+    {"user": "favour", "ip": "10.0.0.15", "failed": 2, "timestamp": "2026-10-08T09:05:00"},
+    {"user": "james", "ip": "91.210.15.8", "failed": 7, "timestamp": "2026-10-08T09:10:00"},
+    {"user": "admin", "ip": "185.220.101.45", "failed": 18, "timestamp": "2026-10-08T09:15:00"},
+    {"user": "sarah", "ip": "10.0.0.21", "failed": 1, "timestamp": "2026-10-08T09:20:00"},
+    {"user": "peter", "ip": "192.168.1.50", "failed": "unknown", "timestamp": "2026-10-08T09:25:00"},
+    {"user": "mary", "ip": "10.0.0.20", "timestamp": "2026-10-08T09:30:00"}
+]
