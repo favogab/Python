@@ -79,17 +79,28 @@ CS50P/
 │   └── Personal/
 │       └── soc_login_analyzer.py
 │
-└── Week_4/
+├── Week_4/
+│   ├── Exercise/
+│   │   ├── adieu.py
+│   │   ├── bitcoin.py
+│   │   ├── emojize.py
+│   │   ├── figlet.py
+│   │   ├── game.py
+│   │   └── professor.py
+│   └── Personal/
+│       ├── login_events.json
+│       └── soc_login_analyzer_w4.py
+│
+└── Week_5/
     ├── Exercise/
-    │   ├── adieu.py
-    │   ├── bitcoin.py
-    │   ├── emojize.py
-    │   ├── figlet.py
-    │   ├── game.py
-    │   └── professor.py
+    │   ├── test_bank/
+    │   ├── test_fuel/
+    │   ├── test_plates/
+    │   └── test_twttr/
     └── Personal/
         ├── login_events.json
-        └── soc_login_analyzer_w4.py
+        ├── soc_login_analyzer_w5.py
+        └── test_soc_login_analyzer_w5.py
 ```
 
 ## Personal Security Projects
@@ -236,6 +247,46 @@ The personal projects primarily reinforce concepts introduced up to the current 
 - `Week_4/Personal/soc_login_analyzer_w4.py`
 - `Week_4/Personal/login_events.json`
 
+### Week 5 – Unit-Tested SOC Login Event Analyzer
+
+The Week 5 project refactors the Week 4 analyzer into smaller, independently testable functions and introduces automated unit testing with `pytest`.
+
+Instead of relying only on manual inspection of the analyzer's output, the project verifies expected behavior using repeatable tests.
+
+**Features:**
+
+- Uses `classify_severity(failed)` to assign LOW, MEDIUM, or HIGH severity based on failed-login counts
+- Uses `analyze_events(events)` to validate simulated events, summarize severity levels, and count source IP occurrences
+- Rejects invalid failed-login counts, including negative values and non-integer inputs
+- Tests severity boundaries at 4/5 and 9/10 failed logins
+- Tests event totals, valid and invalid records, severity counts, and repeated IP addresses
+- Keeps the JSON dataset alongside the Week 5 script so the project runs independently of Week 4
+- Uses `if __name__ == "__main__":` so importing the analyzer for tests does not execute its command-line workflow
+
+**Python concepts reinforced:**
+
+- Writing unit tests with `pytest`
+- Using `assert` to verify expected results
+- Using `pytest.raises()` to verify expected exceptions
+- Testing boundary values and invalid inputs
+- Refactoring code into functions with clear responsibilities
+- Separating test data from external file dependencies
+
+**Verified results:**
+
+- `pytest`: **5 tests passed**
+- Analyzer: **7 total events, 5 valid, 2 invalid**
+- Severity: **2 HIGH, 1 MEDIUM, 2 LOW**
+- Repeated source IP: `185.220.101.45` (**2 events**)
+
+These results use simulated events and simple educational thresholds; they do not independently establish malicious activity.
+
+**Project files:**
+
+- `Week_5/Personal/soc_login_analyzer_w5.py`
+- `Week_5/Personal/test_soc_login_analyzer_w5.py`
+- `Week_5/Personal/login_events.json`
+
 ## Running the Programs
 
 Python 3 is required.
@@ -254,6 +305,16 @@ python soc_login_analyzer_w4.py
 ```
 
 The analyzer reads simulated login events from `login_events.json`, which is included in the same directory.
+
+To run the Week 5 analyzer and its unit tests from the repository root:
+
+```bash
+cd Week_5/Personal
+python soc_login_analyzer_w5.py
+python -m pytest test_soc_login_analyzer_w5.py -v
+```
+
+The Week 5 unit tests require `pytest` (`python -m pip install pytest`).
 
 ### Dependencies and API Security
 
@@ -298,7 +359,7 @@ Each personal project builds on earlier work, gradually introducing new programm
 
 🚧 **In Progress**
 
-Completed coursework and personal practice through **CS50P Week 4 – Libraries**.
+Completed coursework and personal practice through **CS50P Week 5 – Unit Tests**.
 
 **Current progression:**
 
@@ -306,7 +367,8 @@ Completed coursework and personal practice through **CS50P Week 4 – Libraries*
 - **Week 2:** Multi-event analysis using loops, lists, and dictionaries
 - **Week 3:** Exception handling and resilience against malformed event data
 - **Week 4:** Library-enhanced SOC analysis using JSON, Counter, datetime, and structured event validation
+- **Week 5:** Refactored SOC analyzer with automated `pytest` tests, boundary checks, and invalid-data validation
 
-**Next:** CS50P Week 5 – Unit Tests.
+**Next:** CS50P Week 6 – File I/O.
 
 The personal security projects will continue to evolve as new Python concepts are introduced, with an emphasis on learning the fundamentals, understanding the code, and applying programming skills to realistic cybersecurity scenarios.
