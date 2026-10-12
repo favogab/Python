@@ -91,16 +91,29 @@ CS50P/
 │       ├── login_events.json
 │       └── soc_login_analyzer_w4.py
 │
-└── Week_5/
+├── Week_5/
+│   ├── Exercise/
+│   │   ├── test_bank/
+│   │   ├── test_fuel/
+│   │   ├── test_plates/
+│   │   └── test_twttr/
+│   └── Personal/
+│       ├── login_events.json
+│       ├── soc_login_analyzer_w5.py
+│       └── test_soc_login_analyzer_w5.py
+│
+└── Week_6/
     ├── Exercise/
-    │   ├── test_bank/
-    │   ├── test_fuel/
-    │   ├── test_plates/
-    │   └── test_twttr/
+    │   ├── lines.py
+    │   ├── pizza.py
+    │   ├── scourgify.py
+    │   └── shirt.py
     └── Personal/
         ├── login_events.json
-        ├── soc_login_analyzer_w5.py
-        └── test_soc_login_analyzer_w5.py
+        ├── soc_login_analyzer_w6.py
+        ├── test_soc_login_analyzer_w6.py
+        ├── cleaned_events.csv
+        └── soc_report.txt
 ```
 
 ## Personal Security Projects
@@ -287,6 +300,66 @@ These results use simulated events and simple educational thresholds; they do no
 - `Week_5/Personal/test_soc_login_analyzer_w5.py`
 - `Week_5/Personal/login_events.json`
 
+### Week 6 – SOC Log Cleaner & Report Exporter
+
+The Week 6 project extends the unit-tested SOC login event analyzer with file-output capabilities. Instead of only displaying findings in the terminal, the analyzer now retains validated events, exports them as structured CSV data, and saves a human-readable investigation summary to a text file.
+
+**Official CS50P File I/O exercises:**
+
+- `lines.py` — counts executable lines in Python source files, excluding blank lines and full-line comments
+- `pizza.py` — reads CSV menus and displays them as ASCII tables with `tabulate`
+- `scourgify.py` — transforms and writes cleaned CSV records using `csv.DictReader` and `csv.DictWriter`
+- `shirt.py` — processes image files using Pillow to resize, crop, overlay, and save images
+
+All four official exercises passed `check50`.
+
+**Personal project features:**
+
+- Loads simulated login records from `login_events.json` without modifying the original dataset
+- Validates required event fields, nonempty usernames and IP strings, nonnegative integer failed-login counts, and parseable timestamps
+- Skips invalid events while continuing analysis of valid records
+- Classifies valid events into LOW, MEDIUM, and HIGH severity using educational failed-login thresholds
+- Counts event totals, severity distribution, and repeated source IP addresses
+- Retains validated events with an additional `severity` field
+- Exports validated records to `cleaned_events.csv` with the columns `timestamp`, `user`, `ip`, `failed`, and `severity`
+- Saves event totals, severity counts, and repeated IP findings to `soc_report.txt`
+- Handles input-loading and export errors, and uses script-relative paths for the project files
+- Extends automated tests to cover both CSV and text-report exports
+
+**Python concepts reinforced:**
+
+- Reading and writing files with `with open(...)`
+- `csv.DictWriter`, `writeheader()`, and `writerows()`
+- Text-file output with `write()` and newline characters
+- `pathlib.Path` for predictable input and output locations
+- `try / except` for file-operation errors
+- Reusing validated data across multiple output formats
+- Testing generated files with `pytest` and its `tmp_path` fixture
+- Understanding that CSV values are read back as strings
+
+**Verified results:**
+
+| Metric | Result |
+|---|---|
+| Total login events | 7 |
+| Valid events exported | 5 |
+| Invalid events skipped | 2 |
+| HIGH severity | 2 |
+| MEDIUM severity | 1 |
+| LOW severity | 2 |
+| Repeated source IP | `185.220.101.45` (2 events) |
+| Automated tests | **7 passed** |
+
+**Project files:**
+
+- `Week_6/Personal/soc_login_analyzer_w6.py` — event validation, analysis, and report exports
+- `Week_6/Personal/test_soc_login_analyzer_w6.py` — seven automated tests
+- `Week_6/Personal/login_events.json` — simulated input events
+- `Week_6/Personal/cleaned_events.csv` — generated validated event records
+- `Week_6/Personal/soc_report.txt` — generated SOC summary report
+
+The dataset is simulated, and the severity thresholds are educational heuristics. Repeated IPs and failed-login counts are investigation signals, not proof of malicious activity. The analyzer does not yet perform comprehensive IP address validation or full threat detection.
+
 ## Running the Programs
 
 Python 3 is required.
@@ -315,6 +388,16 @@ python -m pytest test_soc_login_analyzer_w5.py -v
 ```
 
 The Week 5 unit tests require `pytest` (`python -m pip install pytest`).
+
+To run the Week 6 SOC Log Cleaner & Report Exporter from the repository root:
+
+```bash
+cd Week_6/Personal
+python soc_login_analyzer_w6.py
+python -m pytest test_soc_login_analyzer_w6.py -v
+```
+
+The script reads `login_events.json` and writes `cleaned_events.csv` and `soc_report.txt` to the same project directory. The seven automated tests require `pytest` (`python -m pip install pytest`). The output files are regenerated when the analyzer runs.
 
 ### Dependencies and API Security
 
@@ -359,7 +442,7 @@ Each personal project builds on earlier work, gradually introducing new programm
 
 🚧 **In Progress**
 
-Completed coursework and personal practice through **CS50P Week 5 – Unit Tests**.
+Completed coursework and personal practice through **CS50P Week 6 – File I/O**.
 
 **Current progression:**
 
@@ -368,7 +451,8 @@ Completed coursework and personal practice through **CS50P Week 5 – Unit Tests
 - **Week 3:** Exception handling and resilience against malformed event data
 - **Week 4:** Library-enhanced SOC analysis using JSON, Counter, datetime, and structured event validation
 - **Week 5:** Refactored SOC analyzer with automated `pytest` tests, boundary checks, and invalid-data validation
+- **Week 6:** File-based SOC event cleaning, CSV export, saved investigation reports, and seven passing automated tests
 
-**Next:** CS50P Week 6 – File I/O.
+**Next:** CS50P Week 7 – Regular Expressions.
 
 The personal security projects will continue to evolve as new Python concepts are introduced, with an emphasis on learning the fundamentals, understanding the code, and applying programming skills to realistic cybersecurity scenarios.
