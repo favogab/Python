@@ -102,16 +102,33 @@ CS50P/
 │       ├── soc_login_analyzer_w5.py
 │       └── test_soc_login_analyzer_w5.py
 │
-└── Week_6/
+├── Week_6/
+│   ├── Exercise/
+│   │   ├── lines.py
+│   │   ├── pizza.py
+│   │   ├── scourgify.py
+│   │   └── shirt.py
+│   └── Personal/
+│       ├── login_events.json
+│       ├── soc_login_analyzer_w6.py
+│       ├── test_soc_login_analyzer_w6.py
+│       ├── cleaned_events.csv
+│       └── soc_report.txt
+│
+└── Week_7/
     ├── Exercise/
-    │   ├── lines.py
-    │   ├── pizza.py
-    │   ├── scourgify.py
-    │   └── shirt.py
+    │   ├── numb3rs.py
+    │   ├── test_numb3rs.py
+    │   ├── watch.py
+    │   ├── working.py
+    │   ├── test_working.py
+    │   ├── um.py
+    │   ├── test_um.py
+    │   └── response.py
     └── Personal/
         ├── login_events.json
-        ├── soc_login_analyzer_w6.py
-        ├── test_soc_login_analyzer_w6.py
+        ├── soc_login_analyzer_w7.py
+        ├── test_soc_login_analyzer_w7.py
         ├── cleaned_events.csv
         └── soc_report.txt
 ```
@@ -360,6 +377,62 @@ All four official exercises passed `check50`.
 
 The dataset is simulated, and the severity thresholds are educational heuristics. Repeated IPs and failed-login counts are investigation signals, not proof of malicious activity. The analyzer does not yet perform comprehensive IP address validation or full threat detection.
 
+### Week 7 – SOC Log Pattern Detector
+
+Week 7 introduces regular expressions for recognizing structured text and adds pattern-based checks to the existing SOC login analyzer. The project continues to use simulated login events and preserves the JSON input, severity classification, CSV export, and text reporting workflow.
+
+**Official CS50P Regular Expressions exercises:**
+
+- `numb3rs.py` and `test_numb3rs.py` — validate IPv4 address structure, octet ranges, and leading-zero rules, with unit tests
+- `watch.py` — extract a YouTube video ID from an HTML iframe embed URL and construct a short shareable link
+- `working.py` and `test_working.py` — validate and convert 12-hour time ranges into 24-hour notation, with unit tests
+- `um.py` and `test_um.py` — count standalone occurrences of “um” using word boundaries and case-insensitive matching
+- `response.py` — validate email syntax with a third-party validation library instead of writing a custom regex
+
+All five official exercises were completed, as reported during the learning session.
+
+**Personal project features:**
+
+- Validates IPv4 addresses using `re.fullmatch()` and checks each octet is between 0 and 255 without leading zeros
+- Rejects login events with malformed IPv4 addresses while continuing to process valid records
+- Uses a case-insensitive regex watchlist to identify the exact usernames `admin`, `administrator`, and `root`
+- Adds a `sensitive_account` Boolean to each validated event and exports it in the cleaned CSV
+- Counts watchlist-matching events and the subset classified as HIGH severity
+- Includes a detection summary and individual sensitive-account findings in the saved text report
+- Retains severity counts, repeated IP reporting, and the original event-processing behavior
+
+**Python concepts reinforced:**
+
+- Raw-string regular expressions and `re.fullmatch()`
+- Capturing groups and match results
+- Alternation (`|`) and `re.IGNORECASE`
+- Separating format validation, watchlist matching, and severity classification
+- Extending existing functions and CSV schemas without breaking prior behavior
+- Regression testing with `pytest`, including valid, invalid, and edge-case inputs
+
+**Verified results (simulated dataset):**
+
+| Metric | Result |
+|---|---|
+| Total login events | 7 |
+| Valid events | 5 |
+| Invalid events | 2 |
+| HIGH / MEDIUM / LOW | 2 / 1 / 2 |
+| Repeated source IP | `185.220.101.45` (2 events) |
+| Sensitive-account events | 2 |
+| HIGH-severity sensitive-account events | 2 |
+| Automated tests | **16 passed** |
+
+**Project files:**
+
+- `Week_7/Personal/soc_login_analyzer_w7.py` — event validation, regex watchlist detection, and exports
+- `Week_7/Personal/test_soc_login_analyzer_w7.py` — sixteen automated tests
+- `Week_7/Personal/login_events.json` — simulated input data
+- `Week_7/Personal/cleaned_events.csv` — validated records and sensitive-account flags
+- `Week_7/Personal/soc_report.txt` — summary, repeated IPs, detection counts, and findings
+
+**Detection limitations:** The username watchlist is deliberately small and educational. A watchlist match or repeated source IP is an investigation lead, not proof of compromise. Counts represent events, not unique accounts or confirmed incidents. The IP validator checks IPv4 syntax only; it does not assess IP reputation or validate IPv6 addresses.
+
 ## Running the Programs
 
 Python 3 is required.
@@ -398,6 +471,16 @@ python -m pytest test_soc_login_analyzer_w6.py -v
 ```
 
 The script reads `login_events.json` and writes `cleaned_events.csv` and `soc_report.txt` to the same project directory. The seven automated tests require `pytest` (`python -m pip install pytest`). The output files are regenerated when the analyzer runs.
+
+To run the Week 7 SOC Log Pattern Detector and its tests from the repository root:
+
+```bash
+cd Week_7/Personal
+python soc_login_analyzer_w7.py
+python -m pytest test_soc_login_analyzer_w7.py -v
+```
+
+The script reads `login_events.json` and regenerates `cleaned_events.csv` and `soc_report.txt`. The 16 automated tests require `pytest`. The official Week 7 `response.py` exercise additionally uses a third-party email validation package such as `validator-collection`.
 
 ### Dependencies and API Security
 
@@ -442,7 +525,7 @@ Each personal project builds on earlier work, gradually introducing new programm
 
 🚧 **In Progress**
 
-Completed coursework and personal practice through **CS50P Week 6 – File I/O**.
+Completed coursework and personal practice through **CS50P Week 7 – Regular Expressions**.
 
 **Current progression:**
 
@@ -452,7 +535,8 @@ Completed coursework and personal practice through **CS50P Week 6 – File I/O**
 - **Week 4:** Library-enhanced SOC analysis using JSON, Counter, datetime, and structured event validation
 - **Week 5:** Refactored SOC analyzer with automated `pytest` tests, boundary checks, and invalid-data validation
 - **Week 6:** File-based SOC event cleaning, CSV export, saved investigation reports, and seven passing automated tests
+- **Week 7:** Regex-based IPv4 validation, sensitive-account watchlist detection, CSV/report enhancements, and sixteen passing automated tests
 
-**Next:** CS50P Week 7 – Regular Expressions.
+**Next:** CS50P Week 8 – Object-Oriented Programming.
 
 The personal security projects will continue to evolve as new Python concepts are introduced, with an emphasis on learning the fundamentals, understanding the code, and applying programming skills to realistic cybersecurity scenarios.

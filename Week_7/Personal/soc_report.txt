@@ -1,0 +1,15 @@
+===== SOC SUMMARY =====
+Total Events: 7
+Valid Events: 5
+Invalid Events: 2
+HIGH Severity: 2
+MEDIUM Severity: 1
+LOW Severity: 2
+===== REPEATED IP ADDRESSES =====
+Repeated IP: 185.220.101.45 (2 events)
+===== SENSITIVE ACCOUNT FINDINGS =====
+Account: admin | IP: 185.220.101.45 | Failed: 12 | Severity: HIGH
+Account: admin | IP: 185.220.101.45 | Failed: 18 | Severity: HIGH
+===== DETECTION SUMMARY =====
+Sensitive Account Events: 2
+HIGH Severity Sensitive Events: 2
