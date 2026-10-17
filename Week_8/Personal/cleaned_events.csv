@@ -1,0 +1,6 @@
+timestamp,user,ip,failed,severity,sensitive_account
+2026-10-08T09:00:00,admin,185.220.101.45,12,HIGH,True
+2026-10-08T09:05:00,favour,10.0.0.15,2,LOW,False
+2026-10-08T09:10:00,james,91.210.15.8,7,MEDIUM,False
+2026-10-08T09:15:00,admin,185.220.101.45,18,HIGH,True
+2026-10-08T09:20:00,sarah,10.0.0.21,1,LOW,False

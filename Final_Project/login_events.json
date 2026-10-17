@@ -1,0 +1,373 @@
+[
+  {
+    "user": "admin",
+    "ip": "185.220.101.45",
+    "failed": 12,
+    "timestamp": "2026-10-08T09:00:00"
+  },
+  {
+    "user": "favour",
+    "ip": "10.0.0.15",
+    "failed": 2,
+    "timestamp": "2026-10-08T09:05:00"
+  },
+  {
+    "user": "james",
+    "ip": "91.210.15.8",
+    "failed": 7,
+    "timestamp": "2026-10-08T09:10:00"
+  },
+  {
+    "user": "admin",
+    "ip": "185.220.101.45",
+    "failed": 18,
+    "timestamp": "2026-10-08T09:15:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "10.0.0.21",
+    "failed": 1,
+    "timestamp": "2026-10-08T09:20:00"
+  },
+  {
+    "user": "peter",
+    "ip": "192.168.1.50",
+    "failed": "unknown",
+    "timestamp": "2026-10-08T09:25:00"
+  },
+  {
+    "user": "mary",
+    "ip": "10.0.0.20",
+    "timestamp": "2026-10-08T09:30:00"
+  },
+  {
+    "user": "service_backup",
+    "ip": "10.0.0.44",
+    "failed": 0,
+    "timestamp": "2026-10-08T09:35:00"
+  },
+  {
+    "user": "admin",
+    "ip": "198.51.100.23",
+    "failed": 8,
+    "timestamp": "2026-10-08T09:52:00"
+  },
+  {
+    "user": "guest",
+    "ip": "192.168.1.55",
+    "failed": 1,
+    "timestamp": "2026-10-08T10:09:00"
+  },
+  {
+    "user": "chika",
+    "ip": "192.168.1.25",
+    "failed": 1,
+    "timestamp": "2026-10-08T10:26:00"
+  },
+  {
+    "user": "mary",
+    "ip": "10.0.0.20",
+    "failed": 1,
+    "timestamp": "2026-10-08T10:43:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "10.0.0.21",
+    "failed": 0,
+    "timestamp": "2026-10-08T11:00:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "10.0.0.21",
+    "failed": 0,
+    "timestamp": "2026-10-08T11:17:00"
+  },
+  {
+    "user": "favour",
+    "ip": "10.0.0.15",
+    "failed": 2,
+    "timestamp": "2026-10-08T11:34:00"
+  },
+  {
+    "user": "mary",
+    "ip": "10.0.0.20",
+    "failed": 0,
+    "timestamp": "2026-10-08T11:51:00"
+  },
+  {
+    "user": "mary",
+    "ip": "10.0.0.20",
+    "failed": 0,
+    "timestamp": "2026-10-08T12:08:00"
+  },
+  {
+    "user": "mary",
+    "ip": "203.0.113.120",
+    "failed": 5,
+    "timestamp": "2026-10-08T12:25:00"
+  },
+  {
+    "user": "service_backup",
+    "ip": "10.0.0.44",
+    "failed": 1,
+    "timestamp": "2026-10-08T12:42:00"
+  },
+  {
+    "user": "admin",
+    "ip": "198.51.100.23",
+    "failed": 6,
+    "timestamp": "2026-10-08T12:59:00"
+  },
+  {
+    "user": "james",
+    "ip": "10.0.0.16",
+    "failed": 0,
+    "timestamp": "2026-10-08T13:16:00"
+  },
+  {
+    "user": "daniel",
+    "ip": "192.168.1.22",
+    "failed": 1,
+    "timestamp": "2026-10-08T13:33:00"
+  },
+  {
+    "user": "admin",
+    "ip": "203.0.113.77",
+    "failed": 9,
+    "timestamp": "2026-10-08T13:50:00"
+  },
+  {
+    "user": "favour",
+    "ip": "10.0.0.15",
+    "failed": 0,
+    "timestamp": "2026-10-08T14:07:00"
+  },
+  {
+    "user": "guest",
+    "ip": "192.168.1.55",
+    "failed": 2,
+    "timestamp": "2026-10-08T14:24:00"
+  },
+  {
+    "user": "root",
+    "ip": "203.0.113.77",
+    "failed": 7,
+    "timestamp": "2026-10-08T14:41:00"
+  },
+  {
+    "user": "admin",
+    "ip": "198.51.100.23",
+    "failed": 11,
+    "timestamp": "2026-10-08T14:58:00"
+  },
+  {
+    "user": "james",
+    "ip": "203.0.113.120",
+    "failed": 5,
+    "timestamp": "2026-10-08T15:15:00"
+  },
+  {
+    "user": "favour",
+    "ip": "10.0.0.15",
+    "failed": 0,
+    "timestamp": "2026-10-08T15:32:00"
+  },
+  {
+    "user": "favour",
+    "ip": "10.0.0.15",
+    "failed": 1,
+    "timestamp": "2026-10-08T15:49:00"
+  },
+  {
+    "user": "daniel",
+    "ip": "192.168.1.22",
+    "failed": 0,
+    "timestamp": "2026-10-08T16:06:00"
+  },
+  {
+    "user": "mary",
+    "ip": "10.0.0.20",
+    "failed": 2,
+    "timestamp": "2026-10-08T16:23:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "10.0.0.21",
+    "failed": 1,
+    "timestamp": "2026-10-08T16:40:00"
+  },
+  {
+    "user": "james",
+    "ip": "10.0.0.16",
+    "failed": 1,
+    "timestamp": "2026-10-08T16:57:00"
+  },
+  {
+    "user": "admin",
+    "ip": "185.220.101.45",
+    "failed": 17,
+    "timestamp": "2026-10-08T17:14:00"
+  },
+  {
+    "user": "root",
+    "ip": "203.0.113.77",
+    "failed": 14,
+    "timestamp": "2026-10-08T17:31:00"
+  },
+  {
+    "user": "chika",
+    "ip": "192.168.1.25",
+    "failed": 0,
+    "timestamp": "2026-10-08T17:48:00"
+  },
+  {
+    "user": "mary",
+    "ip": "203.0.113.120",
+    "failed": 6,
+    "timestamp": "2026-10-08T18:05:00"
+  },
+  {
+    "user": "james",
+    "ip": "10.0.0.16",
+    "failed": 1,
+    "timestamp": "2026-10-08T18:22:00"
+  },
+  {
+    "user": "service_backup",
+    "ip": "10.0.0.44",
+    "failed": 0,
+    "timestamp": "2026-10-08T18:39:00"
+  },
+  {
+    "user": "administrator",
+    "ip": "198.51.100.23",
+    "failed": 5,
+    "timestamp": "2026-10-08T18:56:00"
+  },
+  {
+    "user": "administrator",
+    "ip": "198.51.100.23",
+    "failed": 12,
+    "timestamp": "2026-10-08T19:13:00"
+  },
+  {
+    "user": "admin",
+    "ip": "185.220.101.45",
+    "failed": 13,
+    "timestamp": "2026-10-08T19:30:00"
+  },
+  {
+    "user": "chika",
+    "ip": "192.168.1.25",
+    "failed": 0,
+    "timestamp": "2026-10-08T19:47:00"
+  },
+  {
+    "user": "admin",
+    "ip": "203.0.113.77",
+    "failed": 13,
+    "timestamp": "2026-10-08T20:04:00"
+  },
+  {
+    "user": "root",
+    "ip": "203.0.113.77",
+    "failed": 19,
+    "timestamp": "2026-10-08T20:21:00"
+  },
+  {
+    "user": "james",
+    "ip": "203.0.113.120",
+    "failed": 7,
+    "timestamp": "2026-10-08T20:38:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "203.0.113.120",
+    "failed": 6,
+    "timestamp": "2026-10-08T20:55:00"
+  },
+  {
+    "user": "root",
+    "ip": "203.0.113.77",
+    "failed": 10,
+    "timestamp": "2026-10-08T21:12:00"
+  },
+  {
+    "user": "administrator",
+    "ip": "198.51.100.23",
+    "failed": 16,
+    "timestamp": "2026-10-08T21:29:00"
+  },
+  {
+    "user": "james",
+    "ip": "10.0.0.16",
+    "failed": 2,
+    "timestamp": "2026-10-08T21:46:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "203.0.113.120",
+    "failed": 8,
+    "timestamp": "2026-10-08T22:03:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "10.0.0.21",
+    "failed": 0,
+    "timestamp": "2026-10-08T22:20:00"
+  },
+  {
+    "user": "admin",
+    "ip": "198.51.100.23",
+    "failed": 15,
+    "timestamp": "2026-10-08T22:37:00"
+  },
+  {
+    "user": "favour",
+    "ip": "10.0.0.15",
+    "failed": 1,
+    "timestamp": "2026-10-08T22:54:00"
+  },
+  {
+    "user": "daniel",
+    "ip": "192.168.1.22",
+    "failed": 0,
+    "timestamp": "2026-10-08T23:11:00"
+  },
+  {
+    "user": "root",
+    "ip": "999.10.10.10",
+    "failed": 15,
+    "timestamp": "2026-10-08T23:29:00"
+  },
+  {
+    "user": "admin",
+    "ip": "192.168.001.5",
+    "failed": 11,
+    "timestamp": "2026-10-08T23:30:00"
+  },
+  {
+    "user": "",
+    "ip": "10.0.0.5",
+    "failed": 4,
+    "timestamp": "2026-10-08T23:31:00"
+  },
+  {
+    "user": "james",
+    "ip": "203.0.113.40",
+    "failed": -2,
+    "timestamp": "2026-10-08T23:32:00"
+  },
+  {
+    "user": "sarah",
+    "ip": "10.0.0.21",
+    "failed": 2,
+    "timestamp": "2026-99-99T99:99:99"
+  },
+  {
+    "user": "admin",
+    "ip": "203.0.113.40",
+    "failed": null,
+    "timestamp": "2026-10-08T23:34:00"
+  }
+]

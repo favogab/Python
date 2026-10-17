@@ -1,14 +1,14 @@
 # CS50P – Python Learning & Security Projects
 
-This repository documents my Python learning journey through Harvard's **CS50's Introduction to Programming with Python (CS50P)**.
+This repository documents my completed learning journey through Harvard's **CS50's Introduction to Programming with Python (CS50P)**. It is a personal learning record, not a claim of a formal CS50P certificate.
 
-Alongside the official course exercises and problem sets, I build small personal projects that apply the Python concepts I learn to cybersecurity, Security Operations Center (SOC) analysis, and security automation.
+Alongside the official course exercises and problem sets, I built small personal projects that apply the Python concepts I learn to cybersecurity, Security Operations Center (SOC) analysis, and security automation.
 
-My approach is to learn Python fundamentals progressively and apply each week's concepts to practical security scenarios.
+My approach was to learn Python fundamentals progressively and apply each week's concepts to practical security scenarios, culminating in a tested SOC Login Analyzer.
 
-## What I'm Learning
+## What I Learned
 
-The course covers Python fundamentals including:
+Topics studied include:
 
 - Variables and data types
 - Functions and arguments
@@ -22,12 +22,15 @@ The course covers Python fundamentals including:
 - File I/O
 - Regular expressions
 - Object-oriented programming
+- Constants, sets, comprehensions, unpacking, and generators
+- Type annotations, docstrings, and static checking with mypy
+- Command-line argument parsing with argparse
 
 ## Repository Structure
 
-The repository is organized by course week.
+The repository is organized by course week, followed by a final project.
 
-Each week contains two types of work:
+Course weeks include two types of work:
 
 **CS50P Exercises**
 - Official course exercises and problem sets
@@ -115,22 +118,53 @@ CS50P/
 │       ├── cleaned_events.csv
 │       └── soc_report.txt
 │
-└── Week_7/
+├── Week_7/
+│   ├── Exercise/
+│   │   ├── numb3rs.py
+│   │   ├── test_numb3rs.py
+│   │   ├── watch.py
+│   │   ├── working.py
+│   │   ├── test_working.py
+│   │   ├── um.py
+│   │   ├── test_um.py
+│   │   └── response.py
+│   └── Personal/
+│       ├── login_events.json
+│       ├── soc_login_analyzer_w7.py
+│       ├── test_soc_login_analyzer_w7.py
+│       ├── cleaned_events.csv
+│       └── soc_report.txt
+│
+├── Week_8/
     ├── Exercise/
-    │   ├── numb3rs.py
-    │   ├── test_numb3rs.py
-    │   ├── watch.py
-    │   ├── working.py
-    │   ├── test_working.py
-    │   ├── um.py
-    │   ├── test_um.py
-    │   └── response.py
+    │   ├── seasons.py
+    │   ├── test_seasons.py
+    │   ├── jar.py
+    │   ├── test_jar.py
+    │   ├── shirtificate.py
+    │   └── shirtificate.png
     └── Personal/
         ├── login_events.json
-        ├── soc_login_analyzer_w7.py
-        ├── test_soc_login_analyzer_w7.py
+        ├── soc_login_analyzer_w8.py
+        ├── test_soc_login_analyzer_w8.py
         ├── cleaned_events.csv
+        ├── Screenshot
         └── soc_report.txt
+│
+├── Week_9/                  # Et Cetera learning exercises
+│
+├── Final_Project/
+│   ├── project.py
+│   ├── test_project.py
+│   ├── login_events.json
+│   ├── requirements.txt
+│   ├── README.md
+│   └── reports/              # Generated locally; ignored by Git
+│       ├── cleaned_login_events.csv
+│       └── soc_report.txt
+│
+├── .gitignore
+└── README.md
 ```
 
 ## Personal Security Projects
@@ -433,6 +467,106 @@ All five official exercises were completed, as reported during the learning sess
 
 **Detection limitations:** The username watchlist is deliberately small and educational. A watchlist match or repeated source IP is an investigation lead, not proof of compromise. Counts represent events, not unique accounts or confirmed incidents. The IP validator checks IPv4 syntax only; it does not assess IP reputation or validate IPv6 addresses.
 
+### Week 8 – Object-Oriented SOC Login Analyzer
+
+Week 8 focuses on object-oriented programming (OOP). The personal project refactors the existing SOC login analyzer into cooperating classes, preserving the previous validation, detection, CSV export, and text-report functionality. This is primarily an architectural improvement rather than a new detection feature.
+
+**Official CS50P Object-Oriented Programming exercises:**
+
+- `seasons.py` and `test_seasons.py` — use `datetime.date` objects and date subtraction to calculate age in minutes, converting the result into English words with `inflect`
+- `jar.py` and `test_jar.py` — implement a `Jar` class with initialization, string representation, deposit/withdraw methods, capacity and size properties, and validation
+- `shirtificate.py` — use the `FPDF` class from `fpdf2` to generate a personalized A4 PDF with the CS50 shirt image and a name overlay
+
+All three official exercises were completed during the learning session.
+
+**Personal project architecture:**
+
+| Component | Responsibility |
+|---|---|
+| `LoginEvent` | Validates a single event's username, IPv4 address, failed-login count, and timestamp; exposes severity and sensitive-account properties |
+| `SOCAnalyzer` | Processes event records, skips invalid entries, counts severities and repeated IPs, and summarizes sensitive-account findings |
+| `SOCReport` | Exports validated records to CSV and writes a readable text investigation report |
+
+The original `analyze_events()`, `export_csv()`, and `export_report()` functions remain as compatibility wrappers, while `main()` uses the classes directly. The text report now includes blank lines between sections for easier reading.
+
+**Python concepts reinforced:**
+
+- Classes, instances, `__init__`, instance attributes, and methods
+- `@property` for computed attributes
+- Encapsulation through validation at object creation
+- Composition: `SOCAnalyzer` uses `LoginEvent` objects
+- Separation of concerns across analysis and reporting
+- Refactoring with regression tests and backwards-compatible interfaces
+- Testing object behavior, independent instances, invalid input, empty datasets, and generated files
+
+**Reported results (simulated dataset):**
+
+| Metric | Result |
+|---|---|
+| Total login events | 7 |
+| Valid / invalid events | 5 / 2 |
+| HIGH / MEDIUM / LOW | 2 / 1 / 2 |
+| Repeated source IP | `185.220.101.45` (2 events) |
+| Sensitive-account events | 2 |
+| HIGH-severity sensitive-account events | 2 |
+| Automated tests | **30 passed** |
+
+**Project files:**
+
+- `Week_8/Personal/soc_login_analyzer_w8.py` — OOP analyzer, reporting, and command-line workflow
+- `Week_8/Personal/test_soc_login_analyzer_w8.py` — 30 automated tests
+- `Week_8/Personal/login_events.json` — simulated input records
+- `Week_8/Personal/cleaned_events.csv` — generated validated events
+- `Week_8/Personal/soc_report.txt` — generated human-readable findings
+
+**Limitations:** This is an educational analyzer using simulated records and simple failed-login thresholds. Its username watchlist is limited to `admin`, `administrator`, and `root`. Findings are investigation leads, not confirmed incidents. IPv4 validation does not provide reputation assessment or IPv6 support. `LoginEvent` validates values during initialization, but its attributes are not immutable afterward.
+
+### Week 9 – Python Et Cetera and Analyzer Refinements
+
+Week 9 consolidates advanced Python language features and developer tooling. I applied these concepts to the evolving SOC analyzer rather than introducing unrelated features purely for demonstration.
+
+**Concepts practiced:**
+
+- Named constants and sets for detection thresholds and sensitive-account usernames
+- Type hints for functions and methods, checked with `mypy`
+- Docstrings to document the purpose of classes, functions, and methods
+- `argparse` for `--input` and `--output` command-line options
+- Unpacking, list/dictionary/set comprehensions, and `enumerate()`
+- Generator functions using `yield` and iterator annotations
+- Additional pytest coverage for CLI behavior, summaries, invalid records, and generator filtering
+
+The final project incorporates the Week 9 refinements. These improvements retain the earlier validation and detection workflow while making the analyzer easier to run, inspect, and test.
+
+### Final Project – SOC Login Analyzer
+
+The final learning project brings together the Python skills developed throughout CS50P into a command-line tool for examining **simulated authentication records**.
+
+**Architecture:**
+
+| Component | Responsibility |
+|---|---|
+| `LoginEvent` | Validates individual records and exposes computed severity and sensitive-account status |
+| `SOCAnalyzer` | Processes valid and invalid events; summarizes severity, IP occurrences, and sensitive-account activity |
+| `SOCReport` | Exports cleaned CSV records and a readable SOC investigation report |
+| `main()` | Parses CLI options, loads JSON, runs analysis, and writes output files |
+
+**Capabilities:**
+
+- Validate usernames, IPv4 addresses, failed-login counts, and ISO-format timestamps
+- Classify login events as LOW (0–4 failures), MEDIUM (5–9), or HIGH (10+)
+- Identify events involving `admin`, `administrator`, and `root`
+- Summarize repeated source IPs, sensitive-account events, and unique sensitive usernames
+- Preserve invalid-event numbers and error reasons without stopping processing
+- Export `cleaned_login_events.csv` and `soc_report.txt` to an output directory
+- Accept custom JSON inputs and report destinations through `argparse`
+- Provide a high-severity iterator using `yield`
+
+**Final verified development checkpoint:** **37 pytest tests passed; mypy reported zero issues**. The expanded simulated dataset contains 62 records, including eight intentionally invalid events. These checks demonstrate the tested behavior of the project, not production SOC detection accuracy.
+
+**Project files:** `Final_Project/project.py`, `Final_Project/test_project.py`, `Final_Project/login_events.json`, `Final_Project/requirements.txt`, and `Final_Project/README.md`.
+
+**Scope and limitations:** This is a learning project using synthetic data and educational severity thresholds. IP repetition and privileged-account activity are leads for review, not proof of compromise. The analyzer is not connected to a live SIEM and does not assess IP reputation or support IPv6.
+
 ## Running the Programs
 
 Python 3 is required.
@@ -482,6 +616,42 @@ python -m pytest test_soc_login_analyzer_w7.py -v
 
 The script reads `login_events.json` and regenerates `cleaned_events.csv` and `soc_report.txt`. The 16 automated tests require `pytest`. The official Week 7 `response.py` exercise additionally uses a third-party email validation package such as `validator-collection`.
 
+To run the Week 8 object-oriented analyzer and its tests from the repository root:
+
+```bash
+cd Week_8/Personal
+python soc_login_analyzer_w8.py
+python -m pytest test_soc_login_analyzer_w8.py -v
+```
+
+The script reads `login_events.json` and regenerates `cleaned_events.csv` and `soc_report.txt`. The Week 8 test suite contains 30 tests. The official Week 8 exercises use `inflect` (`seasons.py`) and `fpdf2` (`shirtificate.py`), in addition to Python's standard library.
+
+### Run the Final Project
+
+From the repository root:
+
+```bash
+cd Final_Project
+python -m pip install -r requirements.txt
+python project.py
+```
+
+Use a specific input and output folder:
+
+```bash
+python project.py --input login_events.json --output reports
+```
+
+See available options, run the automated tests, and check types:
+
+```bash
+python project.py --help
+python -m pytest test_project.py -v
+python -m mypy project.py
+```
+
+The application creates its output directory and generates `cleaned_login_events.csv` and `soc_report.txt`. The generated `reports/` directory and Python/test caches are excluded from version control through `.gitignore`. For detailed usage and architecture, see [`Final_Project/README.md`](Final_Project/README.md).
+
 ### Dependencies and API Security
 
 Most personal projects use Python's standard library.
@@ -523,20 +693,22 @@ Each personal project builds on earlier work, gradually introducing new programm
 
 ## Status
 
-🚧 **In Progress**
+✅ **CS50P learning journey completed — Weeks 0–9 and personal final project.**
 
-Completed coursework and personal practice through **CS50P Week 7 – Regular Expressions**.
+This repository documents self-directed completion of the lessons, exercises, and accompanying security-focused projects. It does **not** represent a formal CS50P certificate or a claim that the final project was submitted for certification.
 
-**Current progression:**
+**Learning progression:**
 
+- **Week 0:** Functions, variables, and foundational Python exercises
 - **Week 1:** Single-alert triage using functions and conditional logic
 - **Week 2:** Multi-event analysis using loops, lists, and dictionaries
 - **Week 3:** Exception handling and resilience against malformed event data
-- **Week 4:** Library-enhanced SOC analysis using JSON, Counter, datetime, and structured event validation
-- **Week 5:** Refactored SOC analyzer with automated `pytest` tests, boundary checks, and invalid-data validation
-- **Week 6:** File-based SOC event cleaning, CSV export, saved investigation reports, and seven passing automated tests
-- **Week 7:** Regex-based IPv4 validation, sensitive-account watchlist detection, CSV/report enhancements, and sixteen passing automated tests
+- **Week 4:** Library-enhanced SOC analysis using JSON, Counter, datetime, and event validation
+- **Week 5:** Refactored analyzer with pytest tests and boundary checks
+- **Week 6:** File-based event cleaning, CSV export, and saved investigation reports
+- **Week 7:** Regex-based IPv4 validation and sensitive-account detection
+- **Week 8:** Object-oriented design using `LoginEvent`, `SOCAnalyzer`, and `SOCReport`; 30 tests passed
+- **Week 9:** Constants, typing, docstrings, CLI arguments, comprehensions, enumeration, and generators
+- **Final Project:** Integrated SOC Login Analyzer with **37 passing tests** and **zero mypy issues** at the final verified checkpoint
 
-**Next:** CS50P Week 8 – Object-Oriented Programming.
-
-The personal security projects will continue to evolve as new Python concepts are introduced, with an emphasis on learning the fundamentals, understanding the code, and applying programming skills to realistic cybersecurity scenarios.
+**Next chapter:** Apply this Python foundation to independent projects, security tooling, and practical automation beyond the CS50P course.

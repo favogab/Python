@@ -1,0 +1,15 @@
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Testing and type checking
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Generated SOC reports
+reports/
